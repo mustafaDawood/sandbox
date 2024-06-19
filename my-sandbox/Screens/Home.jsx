@@ -5,18 +5,22 @@ import CatagoryList from '../Components/Home/CatagoryList';
 import Slider from '../Components/Home/Slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularMovies } from '../src/movieSlice';
+import { fetchPopularSeries } from '../src/seriesSlice';
 
 const Home = () => {
 
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies.movies);
+  const series = useSelector((state) => state.series.series);
   const loading = useSelector((state) => state.movies.loading);
   const error = useSelector((state) => state.movies.error);
 
 
   useEffect (() => {
-    dispatch(fetchPopularMovies())  
+    dispatch(fetchPopularMovies()) , dispatch(fetchPopularSeries()) 
   },[dispatch])
+
+ 
 
   return (
     <View style={styles.container}>
@@ -33,7 +37,7 @@ const Home = () => {
         </View>
 
         <View style={styles.ListContainer}>
-          <MoviesList rowTitle={'TrendingSeries'} />
+          <MoviesList rowTitle={'TrendingSeries'} data = {series} />
         </View>
 
         <View style={styles.ListContainer}>
