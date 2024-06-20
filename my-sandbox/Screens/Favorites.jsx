@@ -5,20 +5,12 @@ import { useSelector } from 'react-redux'
 const Favorites = () => {
   // const [isSignedIn, setIsSignedIn] = useState(false)
   // const [userName, setUserName] = useState('mustafa')
-  const isSignedIn = useSelector(state=> state.userData.isSignedIn)
-  const userName = useSelector(state=>state.userData.userName)
+  // const isSignedIn = useSelector(state=> state.userData.isSignedIn)
+  // const userName = useSelector(state=>state.userData.userName)
   
   return (
     <View style = {styles.container}>
-      {
-        isSignedIn ? (
-          <Text>Welcome{userName}</Text>
-        ) :(
-          <View>
-            <Text>please sign in </Text>
-          </View>
-        )
-      }
+     <Text> FAV </Text>
 
     </View>
   )

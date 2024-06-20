@@ -16,28 +16,24 @@ const Home = () => {
   const error = useSelector((state) => state.movies.error);
 
 
-  useEffect (() => {
-    dispatch(fetchPopularMovies()) , dispatch(fetchPopularSeries()) 
-  },[dispatch])
+  useEffect(() => {
+    dispatch(fetchPopularMovies())
+    dispatch(fetchPopularSeries())
+  }, [dispatch])
 
- 
+
 
   return (
     <View style={styles.container}>
       <ScrollView >
-      <Slider />
+        <Slider />
 
-        <View style={styles.CatalogConatiner}>
-          <Text style={styles.Title}>Catagories</Text>
-          <CatagoryList />
+        <View style={styles.ListContainer}>
+          <MoviesList rowTitle={'Popular Movies'} data={movies} />
         </View>
 
         <View style={styles.ListContainer}>
-          <MoviesList rowTitle={'TrendingMovies'} data={movies}/>
-        </View>
-
-        <View style={styles.ListContainer}>
-          <MoviesList rowTitle={'TrendingSeries'} data = {series} />
+          <MoviesList rowTitle={'Popular Series'} data={series} />
         </View>
 
         <View style={styles.ListContainer}>
@@ -45,7 +41,7 @@ const Home = () => {
         </View>
 
         <View style={styles.ListContainer}>
-          <MoviesList rowTitle={'Latest Series '}/>
+          <MoviesList rowTitle={'Latest Series'} />
         </View>
 
       </ScrollView>

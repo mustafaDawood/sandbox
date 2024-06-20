@@ -1,19 +1,24 @@
 import { View, Image, Dimensions, StyleSheet } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
+import { useDispatch , useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchUpComingMovies } from "../../src/upComingSlice";
 
 const Slider = () => {
-    const SlidesData = [
-        { picSource: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQODky57SjwEWMdN9d-34r7NsH32QJ6g0vZcA&s" },
-        { picSource: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3wNCAWiTF5ro01ZHjBIIFMdPE1bwzEXc57w&s" },
-        { picSource: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1V3H7cK_HL61OLbuIrqf-loGYZMRbpjXwHw&s" },
-        { picSource: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY6uTBeT-MC4V_xCpwZoEUTMnJ2K4JxLiP6w&s" }
-    ]
+
+    const upComingMovies = useSelector((state)=>state.upComingMovies.upComingMovies)
+    const dispatch = useDispatch()
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
+
+    useEffect(()=>{
+        dispatch(fetchUpComingMovies())
+    },[dispatch])
 
     const Width = Dimensions.get('window').width
     const RenderItem = ({ item }) => {
         return (
             <View style={styles.Container}>
-                <Image source={{ uri: item.picSource }} style={styles.ImageStyle} />
+                <Image source={{ uri: IMAGE_BASE_URL+item.poster_path }} style={styles.ImageStyle} />
             </View>
         )
 
@@ -22,10 +27,10 @@ const Slider = () => {
     return (
         <View style = {{marginBottom : 5 }}>
             <Carousel
-                data={SlidesData}
+                data={upComingMovies}
                 renderItem={RenderItem}
                 width={Width}
-                height={Width*0.9}
+                height={Width*1.1}
                 loop = {true}
                 autoplay = {true}
                 scrollAnimationDuration={10}

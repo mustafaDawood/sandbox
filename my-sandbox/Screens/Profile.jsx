@@ -6,25 +6,12 @@ import { LogOutAction } from '../src/actions'
 const Profile = () => {
   // const [isSignedIn, setIsSignedIn] = useState(true)
   // const [userName, setUserName] = useState('mustafa')
-  const isSignedIn = useSelector(state=> state.userData.isSignedIn)
-  const userName = useSelector(state=>state.userData.userName)
-  const dispatch = useDispatch()
+  // const isSignedIn = useSelector(state=> state.userData.isSignedIn)
+  // const userName = useSelector(state=>state.userData.userName)
+  // const dispatch = useDispatch()
   return (
     <View style = {styles.container}>
-      {
-        isSignedIn ? (
-          <View>
-            <Text>you are signed in {userName}</Text>
-            <TouchableOpacity onPress={()=> dispatch(LogOutAction())}>
-              <Text>log out </Text>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <View>
-            <Text>you are logged out </Text>
-          </View>
-        )
-      }
+     <Text>Profile</Text>
     </View>
   )
 }
